@@ -15,10 +15,11 @@ res = int(input())
 
 
 def rewrite(file):
-    print('Вы сделали следующую запись:', end='')
+    print('Вы сделали следующую запись:')
     with open(file, encoding='utf-8') as f_h:
         for line in f_h:
-            print(line)
+            print(line, end='')
+        print()
     os.rename('notes/file.txt', 'notes/' + name_note)
 
 
@@ -28,13 +29,14 @@ try:
         with open(path, 'w', encoding='utf-8') as f:
             text_title = input('Название заметки:')
             name_note = text_title + '.txt'
+            name_note = name_note.lower()
             f.write('Название: ' + text_title)
             text_content = input('Заметка:')
             f.write('\nКонтент: ' + text_content)
             text_hesh = input('Хэш теги:')
             f.write('\nХэштег: ' + text_hesh)
 
-        rewrite('notes/new.txt')
+        rewrite('notes/file.txt')
 
     elif res == 2:
         print('Ваш выбор:', res)
