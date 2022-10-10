@@ -23,6 +23,12 @@ try:
         print('Имеющиеся файлы:')
         print(os.listdir('notes'))
         search = input('Введите название искомого файла:')
+    elif res == 3:
+        print('Имеющиеся файлы:')
+        print(os.listdir('notes'))
+        print('Какой файл правим?')
+        rew_file = input()
+        print('Выбран файл ', rew_file)
     else:
         print('Not')
 except Exception as er:
