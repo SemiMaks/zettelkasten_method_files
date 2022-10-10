@@ -8,19 +8,26 @@ tprint('zettelkasten', font='bulbhead')
 path = Path(pathlib.Path.cwd(), 'notes', 'file.txt')
 print('Путь к директории с заметками:')
 print(str(path))
-print(
-    'Готов создать заметку - нажми 1\nХочешь поискать в записях - нажми 2\nХочешь править имеющуюся - нажми 3')
-print('-> ', '')
-res = int(input())
+
+try:
+    print()
+    print('Если готов:\nсоздать заметку - жми 1\nискать в записях - жми 2\nправить имеющиеся - жми 3')
+    print('---> ', '')
+    res = int(input())
+except Exception as er:
+    print('Ошибка ', er)
 
 
 def rewrite(file):
-    print('Вы сделали следующую запись:')
-    with open(file, encoding='utf-8') as f_h:
-        for line in f_h:
-            print(line, end='')
-        print()
-    os.rename('notes/file.txt', 'notes/' + name_note)
+    try:
+        print('Вы сделали следующую запись:')
+        with open(file, encoding='utf-8') as f_h:
+            for line in f_h:
+                print(line, end='')
+                print()
+        os.rename('notes/file.txt', 'notes/' + name_note)
+    except Exception as er:
+        print('Ошибка ', er)
 
 
 try:
