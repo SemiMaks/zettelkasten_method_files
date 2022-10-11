@@ -55,6 +55,7 @@ def main():
                 f.write('\nКонтент: ' + text_content)
                 text_hesh = input('Хэш теги:')
                 f.write('\nХэштег: ' + text_hesh)
+                f.write('\n')
 
             rewrite('notes/file.txt')
 
@@ -69,7 +70,7 @@ def main():
             print('Ваш выбор:', res)
             print('Имеющиеся файлы:')
             print(os.listdir('notes'))
-            print('Какой файл правим?')
+            print('Какой файл правим(укажите с расширением - файл.txt)?')
             rew_file = input()
             print('Выбран файл ', rew_file)
             print('Что требуется сделать?\n1 - удалить\n2 - изменить')
@@ -81,6 +82,8 @@ def main():
                 elif shoose == 2:
                     print('Введите текст, я его добавлю:')
                     add_text = input()
+                    with open('notes/' + rew_file, 'a', encoding='utf-8') as f:
+                        f.write('Добавлено: ' + add_text)
             except Exception as er:
                 print('Ошибка', er)
                 choose()
