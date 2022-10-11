@@ -1,3 +1,4 @@
+import fnmatch
 import os
 import pathlib
 from pathlib import Path
@@ -39,6 +40,15 @@ def rewrite(file):
         print('Ошибка ', er)
 
 
+def find(pattern, path):
+    result = []
+    for root, dirs, files in os.walk(path):
+        for name in files:
+            if fnmatch.fnmatch(name, pattern):
+                result.append(os.path.join(root, name))
+        return result
+
+
 def main():
     global name_note
     intro()
@@ -61,13 +71,20 @@ def main():
 
         elif res == 2:
             print('Ваш выбор:', res)
-            print('Имеющиеся файлы:')
+            # print('Имеющиеся файлы:')
             # print(os.listdir('notes'))
             files = os.listdir('notes')
-            for i in files:
-                print(i)
             print('Что ищем?:')
             search = input()
+            if search in files:
+                print('Есть совпадение:')
+                print(search)
+                print('Содержание файла:')
+                with open('notes/' + search, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        print(line)
+            else:
+                print('Совпадений нет')
 
 
         elif res == 3:
