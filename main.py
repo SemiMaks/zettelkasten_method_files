@@ -62,8 +62,12 @@ def main():
         elif res == 2:
             print('Ваш выбор:', res)
             print('Имеющиеся файлы:')
-            print(os.listdir('notes'))
-            search = input('Введите название искомого файла:')
+            # print(os.listdir('notes'))
+            files = os.listdir('notes')
+            for i in files:
+                print(i)
+            print('Что ищем?:')
+            search = input()
 
 
         elif res == 3:
