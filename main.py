@@ -5,7 +5,7 @@ from pathlib import Path
 from art import *
 
 res = 0
-path = 0
+path = ""
 
 
 def intro():
@@ -64,6 +64,7 @@ def main():
             print(os.listdir('notes'))
             search = input('Введите название искомого файла:')
 
+
         elif res == 3:
             print('Ваш выбор:', res)
             print('Имеющиеся файлы:')
@@ -71,6 +72,18 @@ def main():
             print('Какой файл правим?')
             rew_file = input()
             print('Выбран файл ', rew_file)
+            print('Что требуется сделать?\n1 - удалить\n2 - изменить')
+            try:
+                shoose = int(input())
+                if shoose == 1:
+                    print('Удаляю заметку ', rew_file)
+                    os.remove('notes/' + rew_file)
+                elif shoose == 2:
+                    print('Введите текст, я его добавлю:')
+                    add_text = input()
+            except Exception as er:
+                print('Ошибка', er)
+                choose()
 
         else:
             print('Not')
