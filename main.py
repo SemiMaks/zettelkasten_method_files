@@ -1,6 +1,7 @@
 import fnmatch
 import os
 import pathlib
+import time
 from pathlib import Path
 
 from art import *
@@ -57,15 +58,16 @@ def main():
         if res == 1:
             print('Ваш выбор:', res)
             with open(path, 'w', encoding='utf-8') as f:
-                text_title = input('Название заметки:')
+                now_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+                text_title = input('Название заметки: ')
                 name_note = text_title + '.txt'
                 name_note = name_note.lower()
                 f.write('Название: ' + text_title)
-                text_content = input('Заметка:')
+                text_content = input('Заметка: ')
                 f.write('\nКонтент: ' + text_content)
-                text_hesh = input('Хэш теги:')
+                text_hesh = input('Хэш теги: ')
                 f.write('\nХэштег: ' + text_hesh)
-                f.write('\n')
+                f.write('\n\nЗапись сделана: ' + now_time + '\n')
 
             rewrite('notes/file.txt')
 
